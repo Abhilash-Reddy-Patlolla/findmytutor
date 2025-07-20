@@ -1,26 +1,31 @@
 const express = require('express');
-const Tuition = require('../models/tution');
+const { getAllPosts, createPost } = require('../controllers/tutionController');
 const router = express.Router();
 
-// POST tuition
-router.post('/', async (req, res) => {
-  try {
-    const newTuition = new Tuition(req.body);
-    const saved = await newTuition.save();
-    res.status(201).json(saved);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-});
+// routes/tution.js (add below existing routes)
+// router.post('/subscribe/:id', async (req, res) => {
+//   const userId = req.body.userId; // sent from frontend
+
+//   try {
+//     const tuition = await Tuition.findById(req.params.id);
+//     if (!tuition) return res.status(404).json({ error: 'Tuition not found' });
+
+//     // Prevent duplicate subscriptions
+//     if (!tuition.subscribers.includes(userId)) {
+//       tuition.subscribers.push(userId);
+//       await tuition.save();
+//     }
+
+//     res.status(200).json({ message: 'Subscribed successfully', tuition });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
+
 
 // GET all tuitions
-router.get('/', async (req, res) => {
-  try {
-    const tuitions = await Tuition.find().sort({ postedAt: -1 });
-    res.json(tuitions);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+router.get('/', getAllPosts);
+router.post('/', createPost);
+
 
 module.exports = router;
