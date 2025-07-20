@@ -21,6 +21,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^20.1.2",
     "@angular/common": "^20.1.0",
     "@angular/compiler": "^20.1.0",
     "@angular/core": "^20.1.0",
@@ -29,6 +30,7 @@
     "@angular/platform-server": "^20.1.0",
     "@angular/router": "^20.1.0",
     "@angular/ssr": "^20.1.1",
+    "animations": "^0.0.0",
     "bootstrap": "^5.3.7",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",

@@ -1,1 +1,23 @@
-<p>tuition-list works!</p>
+<input type="text" class="form-control mb-3"
+       placeholder="Search by subject or location"
+       [(ngModel)]="search">
+
+
+<div *ngIf="isLoading">Loading...</div>
+
+<div *ngIf="!isLoading && tuitions.length === 0">
+  No tuitions posted yet.
+</div>
+
+
+
+<div *ngIf="!isLoading && tuitions.length">
+<div *ngFor="let t of tuitions | filterTuitions:search" class="card mb-2">
+
+    <div class="card-body">
+      <h5>{{ t.subject }} - {{ t.location }}</h5>
+      <p>{{ t.description }}</p>
+      <small>Schedule: {{ t.schedule }}</small>
+    </div>
+  </div>
+</div>
