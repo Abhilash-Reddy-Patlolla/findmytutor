@@ -11,7 +11,11 @@ export class TuitionService {
     return this.http.post(this.api, data);
   }
 
-  getTuitions() {
+  getAllPosts() {
     return this.http.get(this.api);
+  }
+
+  createPost(data:any){
+    return this.http.post(this.api,data);
   }
 }

@@ -25,7 +25,7 @@ export class TuitionList implements OnInit {
   }];
 
   ngOnInit() {
-    this.tuitionService.getTuitions().subscribe({
+    this.tuitionService.getAllPosts().subscribe({
       next: (data: any) => {
         this.tuitions = data;
         this.isLoading = false;

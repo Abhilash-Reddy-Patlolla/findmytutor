@@ -10,4 +10,10 @@ export const routes: Routes = [
   { path: 'add', component: AddTuition },
   { path: 'signup', component: Signup },
   { path: 'login', component: Login },
+  {
+  path: 'add',
+  // canActivate: [authGuard],
+  loadComponent: () => import('./pages/tuition-post').then(m => m.TuitionPost)
+}
+
 ];
