@@ -1,10 +1,15 @@
     <div class="container mt-3">
       <nav class="mb-3 d-flex gap-2">
+
+
         <a routerLink="/" class="btn btn-outline-primary">Tuitions</a>
-        <a routerLink="/app-tuition-post" class="btn btn-outline-success" *ngIf="auth.isLoggedIn()">Post Tuition</a>
+        <a *ngIf="auth.isLoggedIn() && role === 'student'" routerLink="/app" class="btn btn-success">Post Tuition</a>
+        <a *ngIf="auth.isLoggedIn() && role === 'tutor'" routerLink="/dashboard" class="btn btn-primary">Tutor Dashboard</a>
+        <a routerLink="/add" class="btn btn-outline-success" *ngIf="auth.isLoggedIn()">Post Tuition</a>
         <a routerLink="/login" class="btn btn-outline-info" *ngIf="!auth.isLoggedIn()">Login</a>
         <a routerLink="/signup" class="btn btn-outline-secondary" *ngIf="!auth.isLoggedIn()">Signup</a>
         <button (click)="auth.logout()" *ngIf="auth.isLoggedIn()" class="btn btn-outline-danger">Logout</button>
       </nav>
-      <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+
     </div>

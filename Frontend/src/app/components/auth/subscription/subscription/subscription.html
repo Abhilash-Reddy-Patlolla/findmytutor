@@ -1,0 +1,19 @@
+<div class="container mt-3">
+  <h2>My Subscriptions</h2>
+
+  <div *ngIf="isLoading">Loading...</div>
+
+  <div *ngIf="!isLoading && subscriptions.length === 0">
+    You haven't subscribed to any tuitions yet.
+  </div>
+
+  <div *ngIf="!isLoading && subscriptions.length">
+    <div *ngFor="let sub of subscriptions" class="card mb-2">
+      <div class="card-body">
+        <h5>{{ sub.tuitionId.subject }} - {{ sub.tuitionId.location }}</h5>
+        <p>{{ sub.tuitionId.description }}</p>
+        <small>Subscribed on {{ sub.subscribedAt | date }}</small>
+      </div>
+    </div>
+  </div>
+</div>

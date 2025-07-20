@@ -1,37 +1,44 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TuitionService } from '../../services/tuition.service';
 import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-add-tuition',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule],
   templateUrl: './add-tuition.html',
-  styleUrl: './add-tuition.css'
+  styleUrl: './add-tuition.css',
+  standalone:true
 })
 export class AddTuition {
-    tuition = {
-    subject: '',
-    location: '',
-    schedule: '',
-    description: ''
-  };
+    private fb = inject(FormBuilder);
+  private ts = inject(TuitionService);
+  private router = inject(Router);
 
-  constructor(private tuitionService: TuitionService, private router: Router,private toast: ToastService) {}
+  isSubmitting = false;
 
-submitTuition() {
-  this.tuitionService.addTuition(this.tuition).subscribe({
-    next: () => {
-      this.toast.showMessage("Tuition posted successfully!");
-      this.router.navigate(['/']);
-    },
-    error: () => {
-      this.toast.showMessage("Something went wrong.");
+ postForm:FormGroup = this.fb.group({
+      subject: ['', Validators.required],
+      classLevel: ['', Validators.required],
+      location: ['', Validators.required],
+      description: ['', Validators.required],
+      schedule: ['']  // Optional field
+    });
+
+  onSubmit(){
+    if(this.postForm.valid){
+
+      this.isSubmitting = true;
+      this.ts.createPost(this.postForm.value).subscribe({
+        next:()=>{
+          alert("posted sucessfully");
+          this.router.navigate(['/']);
+        },
+        error: (err)=>console.log('Post Failed', err)
+        
+      })
     }
-  });
-}
-
-
+  }
 }

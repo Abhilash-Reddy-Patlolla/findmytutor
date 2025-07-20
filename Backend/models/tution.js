@@ -1,3 +1,4 @@
+// models/tution.js
 const mongoose = require('mongoose');
 
 const TuitionSchema = new mongoose.Schema({
@@ -5,7 +6,8 @@ const TuitionSchema = new mongoose.Schema({
   location: String,
   schedule: String,
   description: String,
-  postedAt: { type: Date, default: Date.now }
+  postedAt: { type: Date, default: Date.now },
+  subscribers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
 
 module.exports = mongoose.model('Tuition', TuitionSchema);

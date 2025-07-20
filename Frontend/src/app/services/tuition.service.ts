@@ -16,6 +16,6 @@ export class TuitionService {
   }
 
   createPost(data:any){
-    return this.http.post(this.api,data);
+    return this.http.post(`${this.api}`,data);
   }
 }
