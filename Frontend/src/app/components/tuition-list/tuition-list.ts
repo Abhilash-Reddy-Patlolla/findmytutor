@@ -20,7 +20,7 @@ export class TuitionList implements OnInit {
   isLoading = true;
 
   search = '';
-  userRole:any;
+  userRole:string | null | undefined;
 
 
   tuitions = [{

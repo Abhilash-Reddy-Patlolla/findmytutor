@@ -23,7 +23,7 @@
         <p class="card-text">{{ t.description }}</p>
         <span class="badge bg-secondary">Schedule: {{ t.schedule }}</span>
               <button class="btn btn-sm btn-outline-success mt-2"
-        (click)="subscribe(t._id)" *ngIf="Userrole === 'tutor'">
+        (click)="subscribe(t._id)" *ngIf="userRole === 'tutor'">
   Subscribe
 </button>
       </div>
