@@ -1,15 +1,48 @@
-    <div class="container mt-3">
-      <nav class="mb-3 d-flex gap-2">
+<!-- app.component.html -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
+  <a class="navbar-brand fw-bold text-primary" routerLink="/homepage">🏠 HomeTutors</a>
 
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navLinks"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-        <a routerLink="/" class="btn btn-outline-primary">Tuitions</a>
-        <a *ngIf="auth.isLoggedIn() && role === 'student'" routerLink="/app" class="btn btn-success">Post Tuition</a>
-        <a *ngIf="auth.isLoggedIn() && role === 'tutor'" routerLink="/dashboard" class="btn btn-primary">Tutor Dashboard</a>
-        <a routerLink="/add" class="btn btn-outline-success" *ngIf="auth.isLoggedIn()">Post Tuition</a>
-        <a routerLink="/login" class="btn btn-outline-info" *ngIf="!auth.isLoggedIn()">Login</a>
-        <a routerLink="/signup" class="btn btn-outline-secondary" *ngIf="!auth.isLoggedIn()">Signup</a>
-        <button (click)="auth.logout()" *ngIf="auth.isLoggedIn()" class="btn btn-outline-danger">Logout</button>
-      </nav>
+  <div class="collapse navbar-collapse" id="navLinks">
+    <ul class="navbar-nav ms-auto align-items-center gap-2">
+
+      <li class="nav-item">
+        <a routerLink="/" class="btn btn-outline-primary btn-sm">📚 Tuitions</a>
+      </li>
+
+      <li class="nav-item" *ngIf="auth.isLoggedIn() && role === 'student'">
+        <a routerLink="/add" class="btn btn-success btn-sm">➕ Post Tuition</a>
+      </li>
+
+      <li class="nav-item" *ngIf="auth.isLoggedIn() && role === 'tutor'">
+        <a routerLink="/dashboard" class="btn btn-primary btn-sm">📊 Tutor Dashboard</a>
+      </li>
+
+      <li class="nav-item" *ngIf="!auth.isLoggedIn()">
+        <a routerLink="/login" class="btn btn-outline-info btn-sm">🔐 Login</a>
+      </li>
+
+      <li class="nav-item" *ngIf="!auth.isLoggedIn()">
+        <a routerLink="/signup" class="btn btn-outline-secondary btn-sm">📝 Signup</a>
+      </li>
+
+      <li class="nav-item" *ngIf="auth.isLoggedIn()">
+        <button (click)="auth.logout()" class="btn btn-outline-danger btn-sm">🚪 Logout</button>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<!-- Main Router Content -->
+<div class="container py-4">
   <router-outlet></router-outlet>
-
-    </div>
+</div>

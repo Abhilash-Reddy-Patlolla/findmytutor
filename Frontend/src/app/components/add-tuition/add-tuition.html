@@ -1,35 +1,77 @@
-<div class="container mt-4">
-  <h2 class="mb-4 text-primary">Post Tuition Requirement</h2>
+<!-- add-tuition.component.html -->
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-5">
+          <h2 class="mb-4 text-center text-primary fw-bold">📢 Post a Tuition Requirement</h2>
 
-  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-      <label for="subject" class="form-label">Subject</label>
-      <input id="subject" type="text" formControlName="subject" class="form-control" placeholder="e.g. Physics">
+          <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="subject" class="form-label">📘 Subject</label>
+              <input
+                id="subject"
+                type="text"
+                formControlName="subject"
+                class="form-control"
+                placeholder="e.g. Physics, English Literature"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="classLevel" class="form-label">🎓 Class Level</label>
+              <input
+                id="classLevel"
+                type="text"
+                formControlName="classLevel"
+                class="form-control"
+                placeholder="e.g. 12th Grade, B.Sc First Year"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="location" class="form-label">📍 Location</label>
+              <input
+                id="location"
+                type="text"
+                formControlName="location"
+                class="form-control"
+                placeholder="e.g. Bengaluru, Delhi, Online"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="schedule" class="form-label">📅 Preferred Schedule</label>
+              <input
+                id="schedule"
+                type="text"
+                formControlName="schedule"
+                class="form-control"
+                placeholder="e.g. Weekends, Mon-Wed Evenings"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label">📝 Additional Details</label>
+              <textarea
+                id="description"
+                formControlName="description"
+                class="form-control"
+                rows="4"
+                placeholder="Mention goals, expectations, timing preferences, etc."
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-success w-100 fw-bold"
+              [disabled]="isSubmitting"
+            >
+              {{ isSubmitting ? '⏳ Posting...' : '📨 Post Tuition' }}
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-
-    <div class="mb-3">
-      <label for="classLevel" class="form-label">Class Level</label>
-      <input id="classLevel" type="text" formControlName="classLevel" class="form-control" placeholder="e.g. 12th Grade">
-    </div>
-
-    <div class="mb-3">
-      <label for="location" class="form-label">Location</label>
-      <input id="location" type="text" formControlName="location" class="form-control" placeholder="e.g. Bengaluru">
-    </div>
-
-    <div class="mb-3">
-      <label for="schedule" class="form-label">Schedule</label>
-      <input id="schedule" type="text" formControlName="schedule" class="form-control" placeholder="e.g. Weekends">
-    </div>
-
-    <div class="mb-3">
-      <label for="description" class="form-label">Description</label>
-      <textarea id="description" formControlName="description" class="form-control" rows="4"
-                placeholder="Any specific requirements or details..."></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-success w-100" [disabled]="isSubmitting">
-      {{ isSubmitting ? 'Posting...' : 'Post Tuition' }}
-    </button>
-  </form>
+  </div>
 </div>
