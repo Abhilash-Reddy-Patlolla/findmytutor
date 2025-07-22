@@ -9,29 +9,30 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-tuition-list',
-  imports: [CommonModule, FormsModule,FilterTuitionsPipe],
+  imports: [CommonModule, FormsModule, FilterTuitionsPipe],
   templateUrl: './tuition-list.html',
   styleUrl: './tuition-list.css',
 })
 export class TuitionList implements OnInit {
-
   private auth = inject(AuthService);
   private http = inject(HttpClient);
   isLoading = true;
+  userRole: string | null = '';
 
   search = '';
   userRole:string | null | undefined;
 
-
-  tuitions = [{
-    subject: '',
-    location: '',
-    schedule: '',
-    description: '',
-  }];
+  tuitions = [
+    {
+      subject: '',
+      location: '',
+      schedule: '',
+      description: '',
+    },
+  ];
 
   ngOnInit() {
-     this.userRole =this.auth.getRole();
+    this.userRole = this.auth.getRole();
     this.tuitionService.getAllPosts().subscribe({
       next: (data: any) => {
         this.tuitions = data;
@@ -52,12 +53,12 @@ export class TuitionList implements OnInit {
   }
 
   subscribe(tuitionId: string) {
-  const tutorId = localStorage.getItem('userId'); // or from your auth service
-  this.http.post('http://localhost:3000/api/subscriptions', { tutorId, tuitionId })
-    .subscribe({
-      next: () => alert('Subscribed successfully!'),
-      error: err => alert(err.error.message || 'Subscription failed.')
-    });
-}
-
+    const tutorId = localStorage.getItem('userId'); // or from your auth service
+    this.http
+      .post('http://localhost:3000/api/subscriptions', { tutorId, tuitionId })
+      .subscribe({
+        next: () => alert('Subscribed successfully!'),
+        error: (err) => alert(err.error.message || 'Subscription failed.'),
+      });
+  }
 }
