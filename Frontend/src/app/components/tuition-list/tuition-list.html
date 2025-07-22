@@ -1,34 +1,51 @@
-<div class="container mt-4">
-  <h2 class="text-primary mb-4">Tuition Listings</h2>
+<!-- tuition-list.component.html -->
+<div class="container py-5">
+  <h2 class="text-center text-primary fw-bold mb-4">🎯 Available Tuition Listings</h2>
 
-  <input
-    type="text"
-    class="form-control mb-3"
-    placeholder="Search by subject or location"
-    [(ngModel)]="search"
-  />
-
-  <div *ngIf="isLoading" class="alert alert-info">
-    Loading tuitions...
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-6">
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        placeholder="🔍 Search by subject or location..."
+        [(ngModel)]="search"
+      />
+    </div>
   </div>
 
-  <div *ngIf="!isLoading && tuitions.length === 0" class="alert alert-warning">
-    No tuitions posted yet.
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="text-center alert alert-info">
+    ⏳ Loading tuitions...
   </div>
 
+  <!-- No Tuitions Found -->
+  <div *ngIf="!isLoading && tuitions.length === 0" class="text-center alert alert-warning">
+    😕 No tuitions posted yet. Please check back later.
+  </div>
+
+  <!-- Tuition Cards -->
   <div *ngIf="!isLoading && tuitions.length">
-    <div *ngFor="let t of tuitions | filterTuitions:search" class="card mb-3 border-primary shadow-sm">
+    <div
+      *ngFor="let t of tuitions | filterTuitions:search"
+      class="card shadow-sm border-0 mb-4"
+    >
       <div class="card-body">
-        <h5 class="card-title text-success">{{ t.subject }} - {{ t.location }}</h5>
-        <p class="card-text">{{ t.description }}</p>
-        <span class="badge bg-secondary">Schedule: {{ t.schedule }}</span>
-              <button class="btn btn-sm btn-outline-success mt-2"
-        (click)="subscribe(t._id)" *ngIf="Userrole === 'tutor'">
-  Subscribe
-</button>
+        <h4 class="card-title text-success mb-2">
+          📘 {{ t.subject }} <span class="text-muted fs-6">({{ t.classLevel }})</span>
+        </h4>
+        <p class="mb-2 text-dark"><strong>📍 Location:</strong> {{ t.location }}</p>
+        <p class="card-text text-secondary">{{ t.description }}</p>
+        <span class="badge bg-secondary me-2">🗓 Schedule: {{ t.schedule }}</span>
+
+        <div *ngIf="userRole === 'tutor'" class="mt-3">
+          <button
+            class="btn btn-outline-success btn-sm fw-bold"
+            (click)="subscribe(t._id)"
+          >
+            ✅ Subscribe
+          </button>
+        </div>
       </div>
-
-
     </div>
   </div>
 </div>
