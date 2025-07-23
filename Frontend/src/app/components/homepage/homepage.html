@@ -5,22 +5,22 @@
     <div class="bg-dark bg-opacity-50 p-5 rounded">
       <h1 class="display-4 fw-bold">Empowering Learning, One Tutor at a Time</h1>
       <p class="lead">Find expert tutors tailored to your goals — anytime, anywhere.</p>
-      <div class="row g-2 mt-4">
+      <form [formGroup]="myform" (ngSubmit)="findTutor()" class="row g-2 mt-4">
         <div class="col-md-4">
-          <select class="form-select">
-            <option selected>Select City</option>
-            <option>Hyderabad</option>
+          <select formControlName="city" class="form-select">
+            <option value="">Select City</option>
+            <option value="Hyderabad">Hyderabad</option>
             <!-- <option>Mumbai</option>
-            <option>Bangalore</option> -->
+            <option>Bangalore</option> -->  
           </select>
         </div>
         <div class="col-md-5">
-          <input class="form-control" placeholder="e.g. Maths Class 10, Guitar, Spoken English" />
+          <input class="form-control" formControlName="pincode" placeholder="e.g.500091"  />
         </div>
         <div class="col-md-3">
           <button class="btn btn-warning w-100 fw-bold" (click)="findTutor()" >🔍 Find Tutor</button>
         </div>
-      </div>
+      </form>
     </div>
   </section>
 

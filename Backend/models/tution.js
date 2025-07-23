@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const TuitionSchema = new mongoose.Schema({
   subject: { type: String, required: true },
   location: String,
+  pincode :{required:true,type:String},
   schedule: String,
   description: String,
   postedAt: { type: Date, default: Date.now },

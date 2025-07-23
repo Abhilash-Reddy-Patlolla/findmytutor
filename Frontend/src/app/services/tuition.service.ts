@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TuitionService {
@@ -11,7 +12,7 @@ export class TuitionService {
     return this.http.post(this.api, data);
   }
 
-  getAllPosts() {
+  getAllPosts():Observable<any> {
     return this.http.get(this.api);
   }
 

@@ -14,9 +14,9 @@ exports.getAllPosts = async (req, res) => {
 exports.createPost= async (req,res)=>{
 
     try {
-        const {subject, location, schedule, description,postedAt,subscribers } = req.body;
+        const {subject, location, schedule, description,postedAt,subscribers,pincode } = req.body;
         const posted = new Date(req.body.postedAt);
-        const post = new tution({subject, location, schedule, description,posted,subscribers});
+        const post = new tution({subject, location, schedule, description,posted,subscribers,pincode});
        await post.save();
        res.status(201).json(post);
     } catch (error) {

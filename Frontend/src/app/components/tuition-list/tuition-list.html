@@ -31,13 +31,14 @@
     >
       <div class="card-body">
         <h4 class="card-title text-success mb-2">
-          📘 {{ t.subject }} <span class="text-muted fs-6">({{ t.classLevel }})</span>
+          📘 {{ t.subject }}
+           <!-- <span class="text-muted fs-6">({{ t.classLevel }})</span> -->
         </h4>
         <p class="mb-2 text-dark"><strong>📍 Location:</strong> {{ t.location }}</p>
         <p class="card-text text-secondary">{{ t.description }}</p>
         <span class="badge bg-secondary me-2">🗓 Schedule: {{ t.schedule }}</span>
 
-        <div *ngIf="userRole === 'tutor'" class="mt-3">
+        <div  *ngIf="role==='tutor'" class="mt-3">
           <button
             class="btn btn-outline-success btn-sm fw-bold"
             (click)="subscribe(t._id)"

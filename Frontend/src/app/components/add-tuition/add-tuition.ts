@@ -23,6 +23,7 @@ export class AddTuition {
       subject: ['', Validators.required],
       classLevel: ['', Validators.required],
       location: ['', Validators.required],
+      pincode: ['', Validators.required],
       description: ['', Validators.required],
       schedule: ['']  // Optional field
     });

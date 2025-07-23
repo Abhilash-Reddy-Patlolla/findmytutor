@@ -15,7 +15,7 @@
     <ul class="navbar-nav ms-auto align-items-center gap-2">
 
       <li class="nav-item">
-        <a routerLink="/" class="btn btn-outline-primary btn-sm">📚 Tuitions</a>
+        <a routerLink="/list" class="btn btn-outline-primary btn-sm">📚 Find Students</a>
       </li>
 
       <li class="nav-item" *ngIf="auth.isLoggedIn() && role === 'student'">
@@ -23,7 +23,7 @@
       </li>
 
       <li class="nav-item" *ngIf="auth.isLoggedIn() && role === 'tutor'">
-        <a routerLink="/dashboard" class="btn btn-primary btn-sm">📊 Tutor Dashboard</a>
+        <a routerLink="/dashboard" class="btn btn-primary btn-sm">📊 Home Page</a>
       </li>
 
       <li class="nav-item" *ngIf="!auth.isLoggedIn()">

@@ -17,10 +17,9 @@ export class TuitionList implements OnInit {
   private auth = inject(AuthService);
   private http = inject(HttpClient);
   isLoading = true;
-  userRole: string | null = '';
 
   search = '';
-  userRole:string | null | undefined;
+  role:string | null = null;
 
   tuitions = [
     {
@@ -32,7 +31,7 @@ export class TuitionList implements OnInit {
   ];
 
   ngOnInit() {
-    this.userRole = this.auth.getRole();
+    this.role = this.auth.getRole();
     this.tuitionService.getAllPosts().subscribe({
       next: (data: any) => {
         this.tuitions = data;
